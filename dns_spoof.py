@@ -1,9 +1,9 @@
 import scapy.all as scapy
 from netfilterqueue import NetfilterQueue
 
+target_domain = 'change_me.com'
+my_ip = '192.168.1.7'
 def interface_packet(packet):
-    target_domain = 'change_me.com'
-    my_ip = '192.168.1.7'
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.DNSRR):
         queue_name = scapy_packet[scapy.DNSQR].qname
